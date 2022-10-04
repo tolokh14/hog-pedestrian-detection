@@ -1,3 +1,4 @@
+from imutils.object_detection import non_max_suppression
 import numpy as np
 import cv2 as cv
 import datetime as dt
@@ -30,19 +31,21 @@ while(cap.isOpened()):
 
     #using grayscale picture, also for faster detection
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
-    blur = cv.GaussianBlur(gray, (5,5), 0)
+    # blur = cv.GaussianBlur(gray, (5,5), 0)
     # _, thresh = cv.threshold(blur, 150, 255, cv.THRESH_BINARY)
     # canny = cv.Canny(blur, 125, 175)
     # dilated = cv.dilate(canny, None, iterations=3)
     
     #detect people in the image
     #returns the bounding boxes for the detected objects
-    boxes, weights = hog.detectMultiScale(blur,winStride=(8,8))
+    #winStride=(4, 4),padding=(8, 8), scale=1.05
+    boxes, weights = hog.detectMultiScale(gray,winStride=(8,8))
 
     boxes = np.array([[x, y, x + w, y + h] for (x,y,w,h) in boxes])
+    pick = non_max_suppression(boxes, probs=None, overlapThresh=0.65)
 
     c = 1
-    for (xA, yA, xB, yB) in boxes:
+    for (xA, yA, xB, yB) in pick:
         #display the detected boxes in the colour picture
         cv.rectangle(frame, (xA, yA), (xB,yB), (0,255,0), 2)
         cv.putText(frame, 'Person', (xA + 5, yA - 5), cv.FONT_HERSHEY_SIMPLEX, 0.4, (0, 255, 0), 1)
