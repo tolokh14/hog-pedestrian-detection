@@ -13,7 +13,7 @@ while(cap.isOpened()):
     # Capture frame-by-frame
     ret, frame = cap.read()
     if ret:
-        frame = imutils.resize(frame,width=min(800, frame.shape[1]))
+        frame = imutils.resize(frame,width=min(600, frame.shape[1]))
 
         #detect all the region that has pedestrians
         (regions, _) = hog.detectMultiScale(frame,winStride=(4,4),padding=(4,4),scale=1.05)
