@@ -33,8 +33,6 @@ while(cap.isOpened()):
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
     # blur = cv.GaussianBlur(gray, (5,5), 0)
     # _, thresh = cv.threshold(blur, 150, 255, cv.THRESH_BINARY)
-    # canny = cv.Canny(blur, 125, 175)
-    # dilated = cv.dilate(canny, None, iterations=3)
     
     #detect people in the image
     #returns the bounding boxes for the detected objects
