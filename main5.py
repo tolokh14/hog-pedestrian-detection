@@ -2,8 +2,8 @@ import numpy as np
 from imutils.object_detection import non_max_suppression
 import cv2 as cv
 import requests
-
-URL = 'http://192.168.100.108'
+    
+URL = 'http://192.168.100.106'
 
 hog = cv.HOGDescriptor()
 hog.setSVMDetector(cv.HOGDescriptor_getDefaultPeopleDetector())
