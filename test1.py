@@ -7,7 +7,7 @@ hog.setSVMDetector(cv.HOGDescriptor_getDefaultPeopleDetector())
 
 cv.startWindowThread()
 
-cap1 = cv.VideoCapture(0)
+cap1 = cv.VideoCapture('http://192.168.100.119:81/stream')
 cap2 = cv.VideoCapture('http://192.168.100.106:81/stream')
 while 1:
 
